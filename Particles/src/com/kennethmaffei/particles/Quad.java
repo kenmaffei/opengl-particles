@@ -38,25 +38,25 @@ import android.opengl.GLUtils;
 public class Quad {
 	private ByteBuffer vertexByteBuffer;
 	private ByteBuffer textureByteBuffer;
-	private FloatBuffer vertexBuffer;		//Buffer holding the vertices 
+	private FloatBuffer vertexBuffer;        //Buffer holding the vertices 
 	
-	public float transX;					//X translation
-	public float transY;					//Y translation
-	public float transZ;					//Z translation
+	public float transX;                    //X translation
+	public float transY;                    //Y translation
+	public float transZ;                    //Z translation
 	
-	public float scaleX = 1.0f;				//X scale
-	public float scaleY = 1.0f;				//Y scale
-	public float scaleZ = 1.0f;				//Z scale
+	public float scaleX = 1.0f;             //X scale
+	public float scaleY = 1.0f;             //Y scale
+	public float scaleZ = 1.0f;             //Z scale
 	
-	public float rotateX = 0.0f;			//X rotation
-	public float rotateY = 0.0f;			//Y rotation
-	public float rotateZ = 0.0f;			//Z rotation
+	public float rotateX = 0.0f;            //X rotation
+	public float rotateY = 0.0f;            //Y rotation
+	public float rotateZ = 0.0f;            //Z rotation
 	
-	public float width;						//start width
-	public float height;					//start height
+	public float width;                     //start width
+	public float height;                    //start height
 	  
-	public boolean isParticle;				//Are we a particle
-	public boolean isFacingParticle;		//Are we a facing particle, or just a regular quad
+	public boolean isParticle;              //Are we a particle
+	public boolean isFacingParticle;        //Are we a facing particle, or just a regular quad
 	
 	//The current colors for the quad
 	public float r = 1.0f;
@@ -65,20 +65,20 @@ public class Quad {
 	public float a = 1.0f;
 	
 	private float vertices[] = { 
-	        0.0f, 0.0f,  0.0f,        // V1 - bottom left 
-	        0.0f, 0.0f,  0.0f,        // V2 - top left 
-	        0.0f, 0.0f,  0.0f,        // V3 - bottom right 
-	        0.0f, 0.0f,  0.0f         // V4 - top right 
+	        0.0f, 0.0f,  0.0f,              // V1 - bottom left 
+	        0.0f, 0.0f,  0.0f,              // V2 - top left 
+	        0.0f, 0.0f,  0.0f,              // V3 - bottom right 
+	        0.0f, 0.0f,  0.0f               // V4 - top right 
 	}; 
     
 
-	private FloatBuffer textureBuffer;  // buffer holding the texture coordinates 
+	private FloatBuffer textureBuffer;      // buffer holding the texture coordinates 
 	private float texture[] = { 
 	        // Mapping coordinates for the vertices 
-	        0.0f, 1.0f,     // top left     (V2) 
-	        0.0f, 0.0f,     // bottom left  (V1) 
-	        1.0f, 1.0f,     // top right    (V4) 
-	        1.0f, 0.0f      // bottom right (V3) 
+	        0.0f, 1.0f,                     // top left     (V2) 
+	        0.0f, 0.0f,                     // bottom left  (V1) 
+	        1.0f, 1.0f,                     // top right    (V4) 
+	        1.0f, 0.0f                      // bottom right (V3) 
 	}; 
     
 

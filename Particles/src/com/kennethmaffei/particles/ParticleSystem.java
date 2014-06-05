@@ -44,41 +44,41 @@ public abstract class ParticleSystem {
 	protected int numParticles; 
 	int maxParticles;
 	
-	protected PointF startSize = new PointF();				//Particle start size
-	protected PointF endSize = new PointF();				//Particle end size
-	protected float particlesPerSec;						//Particle birth rate
-	protected Vector3 velocity = new Vector3();				//Particle starting velocity			
-	protected Vector3 velocityVariation = new Vector3();	//Variation in the particle starting velocity
-	protected Vector3 acceleration = new Vector3();			//Particle staring acceleration
-	protected Vector3 origin = new Vector3();				//The origin for the system
-	protected float height, width, depth;					//Volume parameters for particle generation
-	protected float radius;									//For radial systems
-	protected float accumulatedTime;						//For transient systems, the time the system has been alive
-	protected float lifeTime;								//Particle lifetime
-	protected float lifeTimeVar;							//Lifetime variation
-	protected float startTime;								//Delay before actually generating any particles
-	protected float timeBeforeStartTime;					//The accumulated time before the start time
-	protected boolean started;								//Indicates that the system has been started
-	protected boolean fixed;								//Fixed system or transient
-	protected float duration = -1.0f;						//Duration of particle system; duration = -1 means keep going once started
-	protected boolean destroying;							//If the system is shutting down. Generally will decrease life for graceful shut down
-	protected boolean draw;									//Whether or not to actually render the system (for transient systems, update can be true, but draw false)
+	protected PointF startSize = new PointF();              //Particle start size
+	protected PointF endSize = new PointF();                //Particle end size
+	protected float particlesPerSec;                        //Particle birth rate
+	protected Vector3 velocity = new Vector3();             //Particle starting velocity			
+	protected Vector3 velocityVariation = new Vector3();    //Variation in the particle starting velocity
+	protected Vector3 acceleration = new Vector3();         //Particle staring acceleration
+	protected Vector3 origin = new Vector3();               //The origin for the system
+	protected float height, width, depth;                   //Volume parameters for particle generation
+	protected float radius;                                 //For radial systems
+	protected float accumulatedTime;                        //For transient systems, the time the system has been alive
+	protected float lifeTime;                               //Particle lifetime
+	protected float lifeTimeVar;                            //Lifetime variation
+	protected float startTime;                              //Delay before actually generating any particles
+	protected float timeBeforeStartTime;                    //The accumulated time before the start time
+	protected boolean started;                              //Indicates that the system has been started
+	protected boolean fixed;                                //Fixed system or transient
+	protected float duration = -1.0f;                       //Duration of particle system; duration = -1 means keep going once started
+	protected boolean destroying;                           //If the system is shutting down. Generally will decrease life for graceful shut down
+	protected boolean draw;                                 //Whether or not to actually render the system (for transient systems, update can be true, but draw false)
 	//If elapsedTime is such that numNewParticles is 0 (because of rounding down),
 	//then hold over this elapsed time and add it to the next until we get some particle production!
 	protected float timeHeldOver;
 	protected float numParticlesHeldOver;
 	
-	protected Vector3 emitterVelocity = new Vector3();		//Allows the particle emitter to move
-	protected Vector3 emitterAcceleration = new Vector3();	//Acceleration for the emitter
+	protected Vector3 emitterVelocity = new Vector3();      //Allows the particle emitter to move
+	protected Vector3 emitterAcceleration = new Vector3();  //Acceleration for the emitter
 
-	protected boolean radial;								//Sets this as for radial particle production. Velocity is interpreted as radial velocity.
+	protected boolean radial;                               //Sets this as for radial particle production. Velocity is interpreted as radial velocity.
 
-	protected boolean facing = true;						//Particles always face the camera. This is usually the case, but not always.
+	protected boolean facing = true;                        //Particles always face the camera. This is usually the case, but not always.
 	
-	protected float rEff;									//Effective radius used for frustum culling
+	protected float rEff;                                   //Effective radius used for frustum culling
 
 	protected Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);//Scaling of the entire system as a whole
-	protected Vector3 rotate = new Vector3();				//Rotation of the entire system as a whole
+	protected Vector3 rotate = new Vector3();               //Rotation of the entire system as a whole
 	
 	protected int[] glTexture = new int[1];
 	

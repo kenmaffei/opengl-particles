@@ -38,20 +38,20 @@ import android.opengl.GLUtils;
  */
 public class GenericParticleSystem extends ParticleSystem {
 
-	protected float startColorR = 1.0f;
-	protected float startColorG = 1.0f;
-	protected float startColorB = 1.0f;
-	protected float startColorA = 1.0f;
-	protected float midColorR = 1.0f;
-	protected float midColorG = 1.0f;
-	protected float midColorB = 1.0f;
-	protected float midColorA = 1.0f;
-	protected float endColorR = 1.0f;
-	protected float endColorG = 1.0f;
-	protected float endColorB = 1.0f;
-	protected float endColorA = 1.0f;
+	protected float startColorR = 1.0f;          //Start red value
+	protected float startColorG = 1.0f;          //Start green value
+	protected float startColorB = 1.0f;          //Start blue value
+	protected float startColorA = 1.0f;          //Start alpha value
+	protected float midColorR = 1.0f;            //Mid red value
+	protected float midColorG = 1.0f;            //Mid green value
+	protected float midColorB = 1.0f;            //Mid blue value
+	protected float midColorA = 1.0f;            //Mid alpha value
+	protected float endColorR = 1.0f;            //Final red value
+	protected float endColorG = 1.0f;            //Final green value
+	protected float endColorB = 1.0f;            //Final blue value
+	protected float endColorA = 1.0f;            //Final alpha value
 
-	protected float midPercent = 0.5f;		//At what point in the particles life it reaches the mid color
+	protected float midPercent = 0.5f;           //At what point in the particles life it reaches the mid color
 	
 	/**
 	 * Set the particle start color

@@ -24,26 +24,26 @@ import android.graphics.PointF;
  *
  */
 public class Particle {
-	public Vector3 position = new Vector3();			//Current position
-	public Vector3 velocity = new Vector3();			//Current velocity
-	public Vector3 acceleration = new Vector3();		//Current acceleration
-	public float lifeTime; 							//Total lifetime
-	public float life;  								//Accumulated life at time t
-	public PointF size = new PointF();					//Current size
-	public PointF deltaSize = new PointF();			//Change in size per time increment
+	public Vector3 position = new Vector3();            //Current position
+	public Vector3 velocity = new Vector3();            //Current velocity
+	public Vector3 acceleration = new Vector3();        //Current acceleration
+	public float lifeTime;                              //Total lifetime
+	public float life;                                  //Accumulated life at time t
+	public PointF size = new PointF();                  //Current size
+	public PointF deltaSize = new PointF();             //Change in size per time increment
 	
 	//Current colors and color changes per time increment
-	public float colorR;
-	public float colorG;
-	public float colorB;
-	public float colorA;
+	public float colorR;                                //Current red value
+	public float colorG;                                //Current green value
+	public float colorB;                                //Current blue value
+	public float colorA;                                //Current alpha value
 	//deltaColor is used for the special case of fire, but not for the generic particle systems
-	public float deltaColorR;
-	public float deltaColorG;
-	public float deltaColorB;
-	public float deltaColorA;
+	public float deltaColorR;                           //Red delta per unit time
+	public float deltaColorG;                           //Green delta per unit time
+	public float deltaColorB;                           //Blue delta per unit time
+	public float deltaColorA;                           //Alpha delta per unit time
 	
-	public Quad quad;
+	public Quad quad;                                   //The rendered quad for the particle
 	
 	/**
 	 * Since particles are re-used, we do not need to re-allocate everything
