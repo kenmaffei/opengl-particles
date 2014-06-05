@@ -144,27 +144,27 @@ public class Vector3 {
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Vector3))
-            return false;
-        if (obj == this)
-            return true;
-        
-        Vector3 compare = (Vector3)obj;
-        if(x == compare.x && y == compare.y && z == compare.z)
-        	return true;
-        return false;
+			return false;
+		if (obj == this)
+			return true;
+		
+		Vector3 compare = (Vector3)obj;
+		if(x == compare.x && y == compare.y && z == compare.z)
+			return true;
+		return false;
 	}
 	
 	public int hashCode(Object obj) {
 		final int prime = 31;
-        int result = 1;
-
-        Float xf = Float.valueOf(x);
-        result = prime + xf.hashCode();
-        Float yf = Float.valueOf(y);
-        result = prime*result + yf.hashCode();
-        Float zf = Float.valueOf(z);
-        result = prime*result + zf.hashCode();
-
-        return result;
+		int result = 1;
+		
+		Float xf = Float.valueOf(x);
+		result = prime + xf.hashCode();
+		Float yf = Float.valueOf(y);
+		result = prime*result + yf.hashCode();
+		Float zf = Float.valueOf(z);
+		result = prime*result + zf.hashCode();
+		
+		return result;
 	}
 }

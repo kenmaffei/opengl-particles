@@ -250,8 +250,7 @@ public class Fire extends ParticleSystem {
 		    }
 		}
 
-		if(accumulatedTime < duration || fixed)
-		{
+		if(accumulatedTime < duration || fixed) {
 			float numParticlesThisFrame = elapsedTime*particlesPerSec;
 			float numNewParticles = numParticlesThisFrame + numParticlesHeldOver;
 			int numParticlesToEmit = (int) Math.floor(numNewParticles);
@@ -267,20 +266,20 @@ public class Fire extends ParticleSystem {
 	@Override
 	void draw(GL10 gl) {
 		GLES11.glDepthMask(false);
-    	GLES11.glEnable(GLES11.GL_BLEND);
-    	GLES11.glTexEnvi(GLES11.GL_TEXTURE_ENV, GLES11.GL_TEXTURE_ENV_MODE, GLES11.GL_MODULATE);
-    	GLES11.glBlendFunc(GLES11.GL_SRC_ALPHA, GL10.GL_ONE);
- 	    
-    	GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, glTexture[0]);
-    	
-    	GLES11.glPushMatrix();
-    	//No need for translation, it's done per particle when they are created
-    	//We don't translate an already-emitted particle's origin as the the emitter moves
-    	GLES11.glRotatef(rotate.x, 0, 0, 1);
-    	GLES11.glRotatef(rotate.y, 0, 1, 0);
-    	GLES11.glRotatef(rotate.x, 1, 0, 0);
-    	GLES11.glScalef(scale.x, scale.y, scale.z);
-    	
+		GLES11.glEnable(GLES11.GL_BLEND);
+		GLES11.glTexEnvi(GLES11.GL_TEXTURE_ENV, GLES11.GL_TEXTURE_ENV_MODE, GLES11.GL_MODULATE);
+		GLES11.glBlendFunc(GLES11.GL_SRC_ALPHA, GL10.GL_ONE);
+		
+		GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, glTexture[0]);
+		
+		GLES11.glPushMatrix();
+		//No need for translation, it's done per particle when they are created
+		//We don't translate an already-emitted particle's origin as the the emitter moves
+		GLES11.glRotatef(rotate.x, 0, 0, 1);
+		GLES11.glRotatef(rotate.y, 0, 1, 0);
+		GLES11.glRotatef(rotate.x, 1, 0, 0);
+		GLES11.glScalef(scale.x, scale.y, scale.z);
+		
 		for(int i=0; i<numParticles; i++)
 			particles.get(i).quad.draw(gl);
 		

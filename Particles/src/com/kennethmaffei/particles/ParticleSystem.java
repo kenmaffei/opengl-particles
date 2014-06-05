@@ -52,17 +52,17 @@ public abstract class ParticleSystem {
 	protected Vector3 acceleration = new Vector3();			//Particle staring acceleration
 	protected Vector3 origin = new Vector3();				//The origin for the system
 	protected float height, width, depth;					//Volume parameters for particle generation
-	protected float radius; 								//For radial systems
+	protected float radius;									//For radial systems
 	protected float accumulatedTime;						//For transient systems, the time the system has been alive
-	protected float lifeTime;  								//Particle lifetime
-	protected float lifeTimeVar; 							//Lifetime variation
-	protected float startTime; 								//Delay before actually generating any particles
-	protected float timeBeforeStartTime; 					//The accumulated time before the start time
+	protected float lifeTime;								//Particle lifetime
+	protected float lifeTimeVar;							//Lifetime variation
+	protected float startTime;								//Delay before actually generating any particles
+	protected float timeBeforeStartTime;					//The accumulated time before the start time
 	protected boolean started;								//Indicates that the system has been started
-	protected boolean fixed; 								//Fixed system or transient
-	protected float duration = -1.0f; 						//Duration of particle system; duration = -1 means keep going once started
-	protected boolean destroying; 							//If the system is shutting down. Generally will decrease life for graceful shut down
-	protected boolean draw; 								//Whether or not to actually render the system (for transient systems, update can be true, but draw false)
+	protected boolean fixed;								//Fixed system or transient
+	protected float duration = -1.0f;						//Duration of particle system; duration = -1 means keep going once started
+	protected boolean destroying;							//If the system is shutting down. Generally will decrease life for graceful shut down
+	protected boolean draw;									//Whether or not to actually render the system (for transient systems, update can be true, but draw false)
 	//If elapsedTime is such that numNewParticles is 0 (because of rounding down),
 	//then hold over this elapsed time and add it to the next until we get some particle production!
 	protected float timeHeldOver;
@@ -71,14 +71,14 @@ public abstract class ParticleSystem {
 	protected Vector3 emitterVelocity = new Vector3();		//Allows the particle emitter to move
 	protected Vector3 emitterAcceleration = new Vector3();	//Acceleration for the emitter
 
-	protected boolean radial; 								//Sets this as for radial particle production. Velocity is interpreted as radial velocity.
+	protected boolean radial;								//Sets this as for radial particle production. Velocity is interpreted as radial velocity.
 
-	protected boolean facing = true;							//Particles always face the camera. This is usually the case, but not always.
+	protected boolean facing = true;						//Particles always face the camera. This is usually the case, but not always.
 	
-	protected float rEff; 									//Effective radius used for frustum culling
+	protected float rEff;									//Effective radius used for frustum culling
 
-	protected Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);	//Scaling of the entire system as a whole
-	protected Vector3 rotate = new Vector3(); 				//Rotation of the entire system as a whole
+	protected Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);//Scaling of the entire system as a whole
+	protected Vector3 rotate = new Vector3();				//Rotation of the entire system as a whole
 	
 	protected int[] glTexture = new int[1];
 	
@@ -112,8 +112,8 @@ public abstract class ParticleSystem {
      * @return - success or failure
      */
 	boolean loadTexture(GL10 gl, String file) {
-    	try{
-    		InputStream is = Globals.context.getAssets().open(file); 
+		try{
+			InputStream is = Globals.context.getAssets().open(file); 
 			int size = is.available(); 
 			byte[] buffer = new byte[size]; 
 			is.read(buffer, 0, size);
@@ -125,25 +125,25 @@ public abstract class ParticleSystem {
 			opt.inPreferredConfig = Bitmap.Config.ARGB_8888;
 			
 			Bitmap bitmap = BitmapFactory.decodeByteArray(buffer, 0, size, opt);
-	
-	        //Generate one texture pointer 
-	        GLES11.glGenTextures(1, glTexture, 0); 
-	        // ...and bind it to our array 
-	        GLES11.glBindTexture(GL10.GL_TEXTURE_2D, glTexture[0]); 
-	
-	        //Create nearest filtered texture 
-	        GLES11.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR); 
-	        GLES11.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR); 
-	        GLES11.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE); 
-		    GLES11.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
-	
-	        //Use Android GLUtils to specify a two-dimensional texture image from our bitmap 
-	        GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0); 
-    	}
-    	catch(IOException IOerror) {
-    		return false;
+			
+			//Generate one texture pointer 
+			GLES11.glGenTextures(1, glTexture, 0); 
+			// ...and bind it to our array 
+			GLES11.glBindTexture(GL10.GL_TEXTURE_2D, glTexture[0]); 
+			
+			//Create nearest filtered texture 
+			GLES11.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR); 
+			GLES11.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR); 
+			GLES11.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE); 
+			GLES11.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
+			
+			//Use Android GLUtils to specify a two-dimensional texture image from our bitmap 
+			GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0); 
 		}
-    	return true;
+		catch(IOException IOerror) {
+			return false;
+		}
+		return true;
     }
 	
 	/**

@@ -53,7 +53,7 @@ public class GLRenderer implements Renderer {
 	@Override
 	public void onSurfaceChanged(GL10 gl, int width, int height) {
 		if(height == 0)                       			//Prevent A Divide By Zero By 
-		    height = 1;                       			//Making Height Equal One 
+		    height = 1;                       			
 
 		GLES11.glViewport(0, 0, width, height);     	//Reset The Current Viewport 
 		
@@ -71,15 +71,15 @@ public class GLRenderer implements Renderer {
 	 */
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 		GLES11.glEnable(GL10.GL_TEXTURE_2D);            //Enable Texture Mapping
-	    GLES11.glShadeModel(GL10.GL_SMOOTH);            //Enable Smooth Shading 
-	    GLES11.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);    //Black Background 
-	    GLES11.glClearDepthf(1.0f);                     //Depth Buffer Setup 
-	    GLES11.glEnable(GL10.GL_DEPTH_TEST);            //Enables Depth Testing 
-	    GLES11.glDepthFunc(GL10.GL_LEQUAL);             //The Type Of Depth Testing To Do 
-	    GLES11.glFrontFace(GLES11.GL_CW);				//Set the face rotation 
-
-	    //Nice Perspective Calculations 
-	    GLES11.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
+		GLES11.glShadeModel(GL10.GL_SMOOTH);            //Enable Smooth Shading 
+		GLES11.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);    //Black Background 
+		GLES11.glClearDepthf(1.0f);                     //Depth Buffer Setup 
+		GLES11.glEnable(GL10.GL_DEPTH_TEST);            //Enables Depth Testing 
+		GLES11.glDepthFunc(GL10.GL_LEQUAL);             //The Type Of Depth Testing To Do 
+		GLES11.glFrontFace(GLES11.GL_CW);				//Set the face rotation 
+		
+		//Nice Perspective Calculations 
+		GLES11.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
 		
 		//Create our systems
 		CreateSystems(gl);
@@ -110,21 +110,18 @@ public class GLRenderer implements Renderer {
 		//Clear Screen and Depth Buffer 
 		GLES11.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT); 
 		GLES11.glMatrixMode(GLES11.GL_MODELVIEW);
-	    GLES11.glLoadIdentity();
-	    
+		GLES11.glLoadIdentity();
+		
 		GLES11.glEnableClientState(GLES11.GL_VERTEX_ARRAY); 
-	    GLES11.glEnableClientState(GLES11.GL_TEXTURE_COORD_ARRAY); 
-	    
-	    GLU.gluLookAt(gl, camPos.x, camPos.y, camPos.z, 0, 0, 0, 0, 1, 0.0f);
-	    
-	    //if(firePit != null)
-	    //	firePit.draw(gl);
-	    
+		GLES11.glEnableClientState(GLES11.GL_TEXTURE_COORD_ARRAY); 
+		
+		GLU.gluLookAt(gl, camPos.x, camPos.y, camPos.z, 0, 0, 0, 0, 1, 0.0f);
+		
 		//Billboarding!
-	    //This is how we make the particles turn towards the camera
-	    //To keep things efficient we only do it once per frame
-	    //The more correct, but expensive, way is to do it for each particle
-	    //Here we just do it against the particle system's origin rather than each particles origin
+		//This is how we make the particles turn towards the camera
+		//To keep things efficient we only do it once per frame
+		//The more correct, but expensive, way is to do it for each particle
+		//Here we just do it against the particle system's origin rather than each particles origin
 		objToCamProj.copy(camPos);
 		objToCamProj.subtract(fire.origin);
 		objToCamProj.y = 0.0f;
@@ -168,8 +165,8 @@ public class GLRenderer implements Renderer {
 		}
 		
 		//Disable the client state before leaving 
-        GLES11.glDisableClientState(GLES11.GL_VERTEX_ARRAY); 
-        GLES11.glDisableClientState(GLES11.GL_TEXTURE_COORD_ARRAY);
+		GLES11.glDisableClientState(GLES11.GL_VERTEX_ARRAY); 
+		GLES11.glDisableClientState(GLES11.GL_TEXTURE_COORD_ARRAY);
 	}
 	
 	/**

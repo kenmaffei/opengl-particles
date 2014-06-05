@@ -61,7 +61,7 @@ public class Particle {
 			quad.isFacingParticle = isFacingParticle;
 		}
 		else
-			quad.reinitialize(startSize.x, startSize.y, position);
+			quad.update(startSize.x, startSize.y, position);
 		
 		quad.r = colorR;
 		quad.g = colorG;

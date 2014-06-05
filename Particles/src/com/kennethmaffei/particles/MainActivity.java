@@ -55,102 +55,103 @@ public class MainActivity extends Activity {
 		
 		Globals.context = this;
 		
-		// requesting to turn the title OFF 
-        requestWindowFeature(Window.FEATURE_NO_TITLE); 
-
-        // making it full screen 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-        WindowManager.LayoutParams.FLAG_FULLSCREEN); 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        
-        WindowManager wm = getWindowManager();
-        DisplayMetrics dm = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(dm);
-        
-        Globals.deviceWidth = dm.widthPixels;
-        Globals.deviceHeight = dm.heightPixels;
-        
-        glSurfaceView = new GLSurfaceView(this);
-        glRenderer = new GLRenderer();
-        glSurfaceView.setRenderer(glRenderer); 
-        setContentView(glSurfaceView);
-        
-        ImageView steamButton = new ImageView(this);
-        RelativeLayout rl1 = new RelativeLayout(this);
-        rl1.addView(steamButton);
-	    rl1.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-	    
-	    ImageView fireButton = new ImageView(this);
-        RelativeLayout rl2 = new RelativeLayout(this);
-        rl2.addView(fireButton);
-	    rl2.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-	    
-	    ImageView smokeButton = new ImageView(this);
-        RelativeLayout rl3 = new RelativeLayout(this);
-        rl3.addView(smokeButton);
-	    rl3.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-	    
-	    heightScale = Globals.deviceHeight/1280.0f;
-	    
-	    Bitmap bitmap = loadGraphic("steamButton.jpg");
-	    if(bitmap != null) {
-	    	steamButton.setImageBitmap(bitmap);
+		//Requesting to turn the title OFF 
+		requestWindowFeature(Window.FEATURE_NO_TITLE); 
+		
+		//Making it full screen 
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+		WindowManager.LayoutParams.FLAG_FULLSCREEN); 
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
+		WindowManager wm = getWindowManager();
+		DisplayMetrics dm = new DisplayMetrics();
+		wm.getDefaultDisplay().getMetrics(dm);
+		
+		Globals.deviceWidth = dm.widthPixels;
+		Globals.deviceHeight = dm.heightPixels;
+		
+		glSurfaceView = new GLSurfaceView(this);
+		glRenderer = new GLRenderer();
+		glSurfaceView.setRenderer(glRenderer); 
+		setContentView(glSurfaceView);
+		
+		ImageView steamButton = new ImageView(this);
+		RelativeLayout rl1 = new RelativeLayout(this);
+		rl1.addView(steamButton);
+		rl1.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		
+		ImageView fireButton = new ImageView(this);
+		RelativeLayout rl2 = new RelativeLayout(this);
+		rl2.addView(fireButton);
+		rl2.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		
+		ImageView smokeButton = new ImageView(this);
+		RelativeLayout rl3 = new RelativeLayout(this);
+		rl3.addView(smokeButton);
+		rl3.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		
+		heightScale = Globals.deviceHeight/1280.0f;
+		
+		//Lay out the buttons dynamically
+		Bitmap bitmap = loadGraphic("steamButton.jpg");
+		if(bitmap != null) {
+			steamButton.setImageBitmap(bitmap);
 			
 			int layoutHeight = 2*(int)(Globals.deviceHeight - bitmap.getHeight());
-		    int layoutWidth = bitmap.getWidth();
-		    
-		    RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(layoutWidth, layoutHeight);
-		    addContentView(rl1, rlParams);
-		    
-		    steamButton.setOnClickListener(new OnClickListener() {
+			int layoutWidth = bitmap.getWidth();
+			
+			RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(layoutWidth, layoutHeight);
+			addContentView(rl1, rlParams);
+			
+			steamButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
 					glRenderer.setToSteam();
 				} 
-		    });
-	    }
-	    
-	    bitmap = loadGraphic("fireButton.jpg");
-	    if(bitmap != null) {
-	    	fireButton.setImageBitmap(bitmap);
+			});
+		}
+		
+		bitmap = loadGraphic("fireButton.jpg");
+		if(bitmap != null) {
+			fireButton.setImageBitmap(bitmap);
 			
 			int layoutHeight = 2*(int)(Globals.deviceHeight - bitmap.getHeight());
-		    int layoutWidth = 2*(int)Globals.deviceWidth - bitmap.getWidth();
-		    
-		    RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(layoutWidth, layoutHeight);
-		    addContentView(rl2, rlParams);
-		    
-		    fireButton.setOnClickListener(new OnClickListener() {
+			int layoutWidth = 2*(int)Globals.deviceWidth - bitmap.getWidth();
+			
+			RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(layoutWidth, layoutHeight);
+			addContentView(rl2, rlParams);
+			
+			fireButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
 					glRenderer.setToFire();
 				} 
-		    });
-	    }
-	    
-	    bitmap = loadGraphic("smokeButton.jpg");
-	    if(bitmap != null) {
-	    	smokeButton.setImageBitmap(bitmap);
+			});
+		}
+		
+		bitmap = loadGraphic("smokeButton.jpg");
+		if(bitmap != null) {
+			smokeButton.setImageBitmap(bitmap);
 			
 			int layoutHeight = 2*(int)(Globals.deviceHeight - bitmap.getHeight());
-		    int layoutWidth = (int)Globals.deviceWidth;
-		    
-		    RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(layoutWidth, layoutHeight);
-		    addContentView(rl3, rlParams);
-		    
-		    smokeButton.setOnClickListener(new OnClickListener() {
+			int layoutWidth = (int)Globals.deviceWidth;
+			
+			RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(layoutWidth, layoutHeight);
+			addContentView(rl3, rlParams);
+			
+			smokeButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
 					glRenderer.setToBlackSmoke();
 				} 
-		    });
-	    }
+			});
+		}
 	}
 	
 	private Bitmap loadGraphic(String file) {
 		Bitmap bitmap = null;
 		try{
-	    	InputStream is = getAssets().open(file); 
+			InputStream is = getAssets().open(file); 
 			int size = is.available(); 
 			byte[] buffer = new byte[size]; 
 			is.read(buffer, 0, size);
@@ -162,10 +163,10 @@ public class MainActivity extends Activity {
 			
 			Bitmap tmp = BitmapFactory.decodeByteArray(buffer, 0, size, opt);
 			bitmap = Bitmap.createScaledBitmap(tmp, (int)(tmp.getWidth()*heightScale), (int)(tmp.getHeight()*heightScale), true);
-	    }
-	    catch(Exception e) {
-	    	
-	    }
+		}
+		catch(Exception e) {
+			
+		}
 		return bitmap;
 	}
 

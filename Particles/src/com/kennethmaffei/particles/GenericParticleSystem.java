@@ -119,8 +119,7 @@ public class GenericParticleSystem extends ParticleSystem{
 		p.size.x = startSize.x;
 		p.size.y = startSize.y;
 		
-		if(radial)
-		{
+		if(radial) {
 			float vel = velocity.x + (2.0f*Globals.random() - 1.0f)*velocityVariation.x; //This is our radial velocity
 			p.velocity.x = (2.0f*Globals.random() - 1.0f)*vel;
 			p.velocity.y = (2.0f*Globals.random() - 1.0f)*vel;
@@ -130,8 +129,7 @@ public class GenericParticleSystem extends ParticleSystem{
 			p.velocity.y*= vel;
 			p.velocity.z*= vel;
 		}
-		else
-		{
+		else {
 			p.velocity.x = velocity.x + (2.0f*Globals.random() - 1.0f)*velocityVariation.x;
 			p.velocity.y = velocity.y + (2.0f*Globals.random() - 1.0f)*velocityVariation.y;
 			p.velocity.z = velocity.z + (2.0f*Globals.random() - 1.0f)*velocityVariation.z;
@@ -178,33 +176,30 @@ public class GenericParticleSystem extends ParticleSystem{
 		*
 		*/
 
-		for(int i=0; i < numParticles; )
-		{
+		for(int i=0; i < numParticles; ) {
 			Particle p = particles.get(i);
-		    //Update the particle's position based on the elapsed time and velocity
-		    p.position.x+= p.velocity.x * elapsedTime;
-		    p.position.y+= p.velocity.y * elapsedTime;
-		    p.position.z+= p.velocity.z * elapsedTime;
-		    p.velocity.x+= p.acceleration.x * elapsedTime;
-		    p.velocity.y+= p.acceleration.y * elapsedTime;
-		    p.velocity.z+= p.acceleration.z * elapsedTime;
-	
+			//Update the particle's position based on the elapsed time and velocity
+			p.position.x+= p.velocity.x * elapsedTime;
+			p.position.y+= p.velocity.y * elapsedTime;
+			p.position.z+= p.velocity.z * elapsedTime;
+			p.velocity.x+= p.acceleration.x * elapsedTime;
+			p.velocity.y+= p.acceleration.y * elapsedTime;
+			p.velocity.z+= p.acceleration.z * elapsedTime;
+			
 			p.life-= elapsedTime;
-	
-		    p.size.x+= p.deltaSize.x * elapsedTime;
+			
+			p.size.x+= p.deltaSize.x * elapsedTime;
 			p.size.y+= p.deltaSize.y * elapsedTime;
 	
 			float percentComplete = (p.lifeTime - p.life)/p.lifeTime;
-			if(percentComplete < midPercent)
-			{
+			if(percentComplete < midPercent) {
 				percentComplete = percentComplete/midPercent;
 				p.colorR = startColorR + (midColorR - startColorR)*percentComplete;
 				p.colorG = startColorG + (midColorG - startColorG)*percentComplete;
 				p.colorB = startColorB + (midColorB - startColorB)*percentComplete;
 				p.colorA = startColorA + (midColorA - startColorA)*percentComplete;
 			}
-			else
-			{
+			else {
 				percentComplete = (percentComplete - midPercent)/(1.0f - midPercent);
 				p.colorR = midColorR + (endColorR - midColorR)*percentComplete;
 				p.colorG = midColorG + (endColorG - midColorG)*percentComplete;
@@ -214,15 +209,15 @@ public class GenericParticleSystem extends ParticleSystem{
 				
 		    //Kill the particle if it's been around long enough
 		    if(p.life <= 0.0) {
-		    	//Swap the last particle with the current positon, and decrease the count
-		    	Particle dead = particles.get(i);
-		    	particles.set(i, particles.get(numParticles - 1));
-		    	particles.set(numParticles - 1, dead);
-		    	numParticles--;
+				//Swap the last particle with the current positon, and decrease the count
+				Particle dead = particles.get(i);
+				particles.set(i, particles.get(numParticles - 1));
+				particles.set(numParticles - 1, dead);
+				numParticles--;
 		    }
 		    else {
-		    	p.updateQuad();
-		    	i++;
+				p.updateQuad();
+				i++;
 		    }
 		}
 
@@ -243,21 +238,21 @@ public class GenericParticleSystem extends ParticleSystem{
 	@Override
 	void draw(GL10 gl) {
 		GLES11.glDepthMask(false);
-    	GLES11.glEnable(GLES11.GL_BLEND);
-    	GLES11.glTexEnvi(GLES11.GL_TEXTURE_ENV, GLES11.GL_TEXTURE_ENV_MODE, GLES11.GL_MODULATE);
-    	GLES11.glBlendFunc (GLES11.GL_SRC_ALPHA, GL10.GL_ONE);
- 	    
-    	GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, glTexture[0]);
-    	
-    	GLES11.glPushMatrix();
-    	
-    	//No need for translation, it's done per particle when they are created
-    	//We don't translate an already-emitted particle's origin as the the emitter moves
-    	GLES11.glRotatef(rotate.z, 0, 0, 1);
-    	GLES11.glRotatef(rotate.y, 0, 1, 0);
-    	GLES11.glRotatef(rotate.z, 1, 0, 0);
-    	GLES11.glScalef(scale.x, scale.y, scale.z);
-    	
+		GLES11.glEnable(GLES11.GL_BLEND);
+		GLES11.glTexEnvi(GLES11.GL_TEXTURE_ENV, GLES11.GL_TEXTURE_ENV_MODE, GLES11.GL_MODULATE);
+		GLES11.glBlendFunc (GLES11.GL_SRC_ALPHA, GL10.GL_ONE);
+		
+		GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, glTexture[0]);
+		
+		GLES11.glPushMatrix();
+		
+		//No need for translation, it's done per particle when they are created
+		//We don't translate an already-emitted particle's origin as the the emitter moves
+		GLES11.glRotatef(rotate.z, 0, 0, 1);
+		GLES11.glRotatef(rotate.y, 0, 1, 0);
+		GLES11.glRotatef(rotate.z, 1, 0, 0);
+		GLES11.glScalef(scale.x, scale.y, scale.z);
+		
 		for(int i=0; i<numParticles; i++)
 			particles.get(i).quad.draw(gl);
 		
