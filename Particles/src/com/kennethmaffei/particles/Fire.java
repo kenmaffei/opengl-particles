@@ -135,8 +135,7 @@ public class Fire extends ParticleSystem {
 		p.size.x = startSize.x;
 		p.size.y = startSize.y;
 		p.lifeTime = p.life = lifeTime + Globals.random()*lifeTimeVar;
-		if(useDefaultColors)
-		{
+		if(useDefaultColors) {
 			p.colorR = 1.0f;
 			p.colorG = 0.5f + Globals.random() * 0.5f;
 			p.colorB = 0.0f;
@@ -147,8 +146,7 @@ public class Fire extends ParticleSystem {
 			p.deltaColorB = 0.0f;
 			p.deltaColorA = -1.0f/p.life;
 		}
-		else
-		{
+		else {
 			p.colorR = startColorR;
 			p.colorG = startColorG;
 			p.colorB = startColorB;
@@ -190,8 +188,7 @@ public class Fire extends ParticleSystem {
 		*/
 
 		//Iterate over all the particles and update their attributes
-		for(int i=0; i < numParticles; )
-		{
+		for(int i=0; i < numParticles; ) {
 			Particle p = particles.get(i);
 		    //Update the particle's position based on the elapsed time and velocity
 		    p.position.x+= p.velocity.x * elapsedTime;

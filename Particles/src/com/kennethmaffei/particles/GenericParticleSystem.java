@@ -36,7 +36,7 @@ import android.opengl.GLUtils;
  * @author Kenneth Maffei
  *
  */
-public class GenericParticleSystem extends ParticleSystem{
+public class GenericParticleSystem extends ParticleSystem {
 
 	protected float startColorR = 1.0f;
 	protected float startColorG = 1.0f;
@@ -221,8 +221,7 @@ public class GenericParticleSystem extends ParticleSystem{
 		    }
 		}
 
-		if(accumulatedTime < duration || fixed)
-		{
+		if(accumulatedTime < duration || fixed) {
 			float numParticlesThisFrame = elapsedTime*particlesPerSec;
 			float numNewParticles = numParticlesThisFrame + numParticlesHeldOver;
 			int numParticlesToEmit = (int) Math.floor(numNewParticles);
